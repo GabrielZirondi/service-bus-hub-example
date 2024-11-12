@@ -1,0 +1,3 @@
+example.listener: auto
+servicebus:
+  connectionString: Endpoint=sb://your-servicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yourkey

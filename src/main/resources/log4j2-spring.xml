@@ -1,0 +1,14 @@
+<Configuration name="Default">
+    <Properties>
+        <Property name="log-pattern-console">%highlight{[%level{length=5}]} %d{yyyy-MM-dd HH:mm:ss.SSS}%style{TID:%X{transactionId}}{cyan} %style{[%t]}{blue} %style{%c{1}}{magenta} - %msg%n</Property>
+    </Properties>
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="${log-pattern-console}" disableAnsi="false"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info"><AppenderRef ref="LogToConsole"/></Root>
+        <Logger name="org.spring.azure.hub" additivity="false" level="trace"><AppenderRef ref="LogToConsole"/></Logger>
+    </Loggers>
+</Configuration>

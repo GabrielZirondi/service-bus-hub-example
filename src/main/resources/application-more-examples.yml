@@ -1,0 +1,53 @@
+servicebus:
+  connectionString: "Endpoint=sb://<your-namespace>.servicebus.windows.net/;SharedAccessKeyName=<key-name>;SharedAccessKey=<key>"
+  enableCrossEntityTransactions: false;
+  receiveMode: PEEK_LOCK
+  maxAutoLockRenewDuration: 300  # in seconds (5 minutes)
+  prefetchCount: 0
+  queues:
+    - name: queueSafe
+      connectionString: "Endpoint=sb://<your-namespace>.servicebus.windows.net/;SharedAccessKeyName=<key-name>;SharedAccessKey=<key>"
+      enableCrossEntityTransactions: false;
+      receiveMode: PEEK_LOCK
+      maxAutoLockRenewDuration: 300  # in seconds (5 minutes)
+      prefetchCount: 0
+
+    - name: anotherQueue
+      connectionString: "Endpoint=sb://<your-namespace>.servicebus.windows.net/;SharedAccessKeyName=<key-name>;SharedAccessKey=<key>"
+      enableCrossEntityTransactions: false;
+      receiveMode: RECEIVE_AND_DELETE
+      maxAutoLockRenewDuration: 600  # in seconds (10 minutes)
+      prefetchCount: 10
+
+    - name: thirdQueue
+      connectionString: "Endpoint=sb://<your-namespace>.servicebus.windows.net/;SharedAccessKeyName=<key-name>;SharedAccessKey=<key>"
+      enableCrossEntityTransactions: false;
+      receiveMode: PEEK_LOCK
+      maxAutoLockRenewDuration: 900  # in seconds (15 minutes)
+      prefetchCount: 0
+
+
+  topics:
+    - name: firstTopic
+      connectionString: "Endpoint=sb://<your-namespace>.servicebus.windows.net/;SharedAccessKeyName=<key-name>;SharedAccessKey=<key>"
+      enableCrossEntityTransactions: false;
+      subscriptions:
+        - name: firstSubscription
+          enableCrossEntityTransactions: false;
+          receiveMode: PEEK_LOCK
+          maxAutoLockRenewDuration: 300
+          prefetchCount: 0
+        - name: secondSubscription
+          enableCrossEntityTransactions: false;
+          receiveMode: PEEK_LOCK
+          maxAutoLockRenewDuration: 300
+          prefetchCount: 0
+
+    - name: secondTopic
+      connectionString: "Endpoint=sb://<your-namespace>.servicebus.windows.net/;SharedAccessKeyName=<key-name>;SharedAccessKey=<key>"
+      subscriptions:
+        - name: thirdSubscription
+          enableCrossEntityTransactions: false;
+          receiveMode: PEEK_LOCK
+          maxAutoLockRenewDuration: 300
+          prefetchCount: 0

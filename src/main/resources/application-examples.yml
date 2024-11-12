@@ -1,0 +1,18 @@
+example.listener: auto
+
+servicebus:
+  connectionString: Endpoint=sb://your-servicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yourkey
+  maxConcurrentCalls: 10
+  maxAutoLockRenewDuration: 120
+  queues:
+    - name: secure
+      connectionString: Endpoint=sb://your-servicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yourkey;EntityPath=secure
+      maxConcurrentCalls: 2
+  topics:
+    - name: malware-detected
+      maxConcurrentCalls: 2
+      connectionString: Endpoint=sb://your-servicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yourkey;EntityPath=malware-detected
+      subscriptions:
+        - name: on-cloud
+          maxConcurrentCalls: 1
+          maxAutoLockRenewDuration: 60
